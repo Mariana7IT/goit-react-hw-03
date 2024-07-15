@@ -1,0 +1,19 @@
+.place {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  padding: 40px;
+  
+}
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 10px  20px;
+  font-size: 1em;
+  margin-left: 8px;
+  font-weight: 500;
+  font-family: inherit;
+  background:firebrick;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
