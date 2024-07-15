@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import "./Formik.module.css"; 
+import s from "./Formik.module.css"; 
 
 const initialValues = {
   username: "",
@@ -46,56 +46,81 @@ const FeedbackForm = () => {
       validationSchema={FeedbackSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <div>
-          <label htmlFor={usernameId}>Username</label>
-          <Field
-            type="text"
-            name="username"
-            placeholder="Username"
-            id={usernameId}
-          />
-          <ErrorMessage name="username" component="span" className="error" />
+      <Form className={s.formWrapper}>
+        <div className={s.formContainer}>
+          <div className={s.formGroup}>
+            <label htmlFor={usernameId}>Username</label>
+            <Field
+              type="text"
+              name="username"
+              placeholder="Username"
+              id={usernameId}
+            />
+            <ErrorMessage
+              name="username"
+              component="span"
+              className={s.error}
+            />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor={emailId}>Email</label>
+            <Field type="email" name="email" placeholder="Email" id={emailId} />
+            <ErrorMessage
+              name="email"
+              component="span"
+              className={s.error}
+            />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor={passwordId}>Password</label>
+            <Field
+              type="password"
+              name="password"
+              placeholder="Password"
+              id={passwordId}
+            />
+            <ErrorMessage
+              name="password"
+              component="span"
+              className={s.error}
+            />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor={textareaId}>Message</label>
+            <Field
+              as="textarea"
+              cols="20"
+              rows="5"
+              name="textarea"
+              id={textareaId}
+            />
+            <ErrorMessage
+              name="textarea"
+              component="span"
+              className={s.error}
+            />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor={selectId}>Level</label>
+            <Field as="select" name="level" id={selectId}>
+              <option value="small">small</option>
+              <option value="medium">medium</option>
+              <option value="long">long</option>
+            </Field>
+            <ErrorMessage
+              name="level"
+              component="span"
+              className={s.error}
+            />
+          </div>
+          <button type="submit" className={s.submitButton}>
+            Submit
+          </button>
         </div>
-        <div>
-          <label htmlFor={emailId}>Email</label>
-          <Field type="email" name="email" placeholder="Email" id={emailId} />
-          <ErrorMessage name="email" component="span" className="error" />
-        </div>
-        <div>
-          <label htmlFor={passwordId}>Password</label>
-          <Field
-            type="password"
-            name="password"
-            placeholder="Password"
-            id={passwordId}
-          />
-          <ErrorMessage name="password" component="span" className="error" />
-        </div>
-        <div>
-          <label htmlFor={textareaId}>Message</label>
-          <Field
-            as="textarea"
-            cols="20"
-            rows="5"
-            name="textarea"
-            id={textareaId}
-          />
-          <ErrorMessage name="textarea" component="span" className="error" />
-        </div>
-        <div>
-          <label htmlFor={selectId}>Level</label>
-          <Field as="select" name="level" id={selectId}>
-            <option value="small">small</option>
-            <option value="medium">medium</option>
-            <option value="long">long</option>
-          </Field>
-          <ErrorMessage name="level" component="span" className="error" />
-        </div>
-        <button type="submit">Submit</button>
       </Form>
     </Formik>
   );
 };
+
 
 export default FeedbackForm;
