@@ -1,5 +1,5 @@
-import "./App.css";
-import FeedbackSabmit from "./Components/Formik/Formik";
+
+import FeedbackSabmit from './Formik/Formik.jsx';
 
 function App() {
   return (
