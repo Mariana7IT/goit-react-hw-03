@@ -1,14 +1,39 @@
-import React from 'react';
-import FeedbackSabmit from './Formik/Formik.jsx';
-import contacts from '../contact.json'; 
+import { useEffect, useState } from "react";
 
 
-function App() {
+const App = () => {
+  const [contacts, setContacts] = useState(() => {
+    const savedContacts = localStorage.getItem("contacts");
+    return savedContacts ? JSON.parse(savedContacts) : [];
+  });
+  const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
+
+  const filterContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  const handleAddContact = (newContact) => {
+    setContacts([...contacts, newContact]);
+  };
+
+  const handleDeleteContact = (id) => {
+    setContacts(contacts.filter((contact) => contact.id !== id));
+  };
+
   return (
     <>
-      <FeedbackSabmit />
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm onAddContact={handleAddContact} />
+        <SearchBox value={filter} onFilter={setFilter} />
+        <ContactList contacts={filterContacts} onDelete={handleDeleteContact} />
+      </div>
     </>
   );
-}
+};
 
 export default App;
